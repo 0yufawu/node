@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    <div class="b">
+        <table id="tables">
+            <thead>
+                <tr>
+                    <th width="85px">类型</th>
+                    <th width="85px">影名</th>
+                    <!-- <th width="85px">性别</th>
+                    <th width="140px">籍贯</th>
+                    <th width="140px">位置</th>
+                    <th width="282px">台词</th> -->
+                    <th width="340px">操作</th>
+                </tr>
+            </thead>
+            <tbody id="moviess">
+            
+    </tbody>
+</table>
+</div>
+</body>
+<script src="/javascripts/xframe-min-1.0.js" type="text/javascript"></script>
+<script src="/javascripts/base.js" type="text/javascript"></script>
+<script>
+    $.ajax({
+     type:"get",
+     url:"/use/show",
+     success:function(data){
+         var d = JSON.parse(data)
+         
+console.log(d)
+        document.getElementById("moviess").innerHTML = d.map ( i=>
+        `       <tr>
+                    <td>${i.type}</td>
+                    <td>${i.name}</td>
+                    <td>
+                        <button class="xiugai">修改</button>
+                        <button class="delete">删除</button>
+                    </td>
+                </tr>
+                `
+        )
+     }
+ })
+</script>
+</html>
