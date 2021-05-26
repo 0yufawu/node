@@ -317,6 +317,7 @@ span div            1
     color: rgb(173, 25, 129);
     font-size: 14px;
 }
+
 .add {
     height: 100px;
     border: 2px solid rgb(172, 123, 123);
@@ -375,4 +376,79 @@ table button {
     border-style: none;
     width: 60px;
     color: rgb(7, 7, 7);
+}
+
+.xiugai {
+    margin-top: 2px;
+    background-color: rgb(67, 181, 201);
+    border-radius: 4px;
+    border-style: none;
+    width: 60px;
+    color: rgb(17, 17, 17);
+}
+
+.delete {
+    margin-top: 2px;
+    background-color: rgb(234, 250, 8);
+    border-radius: 4px;
+    border-style: none;
+    width: 60px;
+    color: rgb(14, 13, 13);
+}
+
+.addImg {
+    margin-top: 2px;
+    background-color: rgb(222, 47, 47);
+    border-radius: 4px;
+    border-style: none;
+    color: rgb(19, 18, 18);
+    width: 80px;
+}
+
+.addNew {
+    border: 1px solid #d0d0d0;
+    position: absolute;
+    top: 100px;
+    left: 330px;
+    width: 630px;
+    height: 420px;
+    background-color: rgb(32, 78, 178);
+}
+
+#icon-close {
+    float: right;
+}
+
+.addNew img {
+    float: right;
+    width: 50%;
+    height: 50%;
+}
+
+.top-text {
+    width: 100%;
+    height: 13%;
+}
+
+.mid-content {
+    width: auto;
+    height: 74%;
+    margin: 0;
+    padding: 10px 30px 0 50px;
+}
+
+.mid-content span {
+    color: red;
+    font-size: 8px;
+}
+
+.bottom-btn {
+    width: 100%;
+    height: 13%;
+}
+
+.top-text h3 {
+    margin: 0 0 0 3px;
+    width: 30%;
+    float: left;
 }

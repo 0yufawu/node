@@ -38,3 +38,16 @@
 
  
  //  footer 部分的logo切换结束-----------------------------------------------------------------
+
+
+ function addBase() {
+    let d = document.getElementById("addin");
+    d.style.display = '';
+
+}
+
+function closes() {
+    let d = document.getElementById("addin");
+    d.style.display = 'none';
+}
+

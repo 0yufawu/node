@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 <body>
+    <div class="add">
+        <button class="sch-btn" onclick="addBase()">
+        ＋ 添加
+    </button>
+    </div>
     <div class="b">
         <table id="tables">
             <thead>
@@ -24,32 +29,98 @@
             </thead>
             <tbody id="moviess">
             
-    </tbody>
+            </tbody>
 </table>
 </div>
+
+<div class="addNew" id="addin" style="display: none">
+    <div class="top-text">
+        <h3>
+            新增数据
+        </h3>
+        <i id="icon-close">
+        <a href="#" onclick="closes()">
+        </a>
+    </i>
+    </div>
+    <div class="mid-content" id="con-input">
+        <div class="hero">
+            <span>*</span> 类型:
+            <label>
+            <input class="in" id="type" type="text" placeholder="  ">
+        </label>
+        </div>
+        <div class="hero">
+            <span>*</span> 影名:
+            <label>
+            <input class="in" id="name" type="text" placeholder="  ">
+        </label>
+        </div> 
+    </div>
+    <div class="bottom-btn">
+        <button class="sch-btn" id="confirm" onclick="conf()" style="float: right">
+        确 定
+    </button>
+        <button class="sch-btn" id="cancel" onclick="closes()" style="margin-right:3px; float: right; color:black; background-color: white; border: 1px solid #d0d0d0;">
+        取 消
+    </button>
+    </div>
+</div>
 </body>
-<script src="/javascripts/xframe-min-1.0.js" type="text/javascript"></script>
+<script src="/javascripts/jq.min.js" type="text/javascript"></script>
 <script src="/javascripts/base.js" type="text/javascript"></script>
 <script>
+   function load(){
     $.ajax({
      type:"get",
      url:"/use/show",
      success:function(data){
-         var d = JSON.parse(data)
-         
-console.log(d)
+         var d = data
         document.getElementById("moviess").innerHTML = d.map ( i=>
         `       <tr>
                     <td>${i.type}</td>
                     <td>${i.name}</td>
                     <td>
                         <button class="xiugai">修改</button>
-                        <button class="delete">删除</button>
+                        <button class="del" data-name=${i.name}>删除</button>
                     </td>
                 </tr>
                 `
         )
      }
  })
+
+   }
+
+load()
+
+ $("#moviess").delegate(".del","click",function(){
+     $.ajax({
+         type:"post",
+         url:"/use/del",
+         data:{"name":$(this).data("name")},
+         success:function(data){
+             alert("del success");
+             load()
+         }
+     })
+ })
+
+
+ function conf() {
+    let type = $("#type").val()
+    let name = $("#name").val()
+
+    $.ajax({
+        type:"post",
+        url:"/use/add",
+        data:{"type":type,"name":name},
+        success:function(data){
+            alert("add success");
+           
+        }
+    })
+}
+
 </script>
 </html>

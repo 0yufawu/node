@@ -41,6 +41,8 @@ router.post('/',(req,res) =>{
     //             next();
     //         }
     //         else{
+
+    
     //             req.session.error = "用户存在"
     //             res.redirect("/")
     //         }

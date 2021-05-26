@@ -36,4 +36,30 @@ router.get('/show', function(req, res, next) {
     })
 });
 
+router.post('/del', function(req, res, next) {
+  var name = req.body.name
+  var query = 'delete from movie where name = "'+name+'" ';
+
+  database.query(query,function(err,rows,fields){
+    if(err){
+        console.log(err);
+        return;
+    }
+    res.json({"status":1})
+  })
+});
+
+router.post('/add',function(req,res,next){
+  var type = req.body.type;
+  var name = req.body.name;
+  var query = 'insert into movie values("'+type+'","'+name+'")';
+  database.query(query,function(err,rows,fields){
+    if(err){
+        console.log(err);
+        return;
+    }
+    res.json({"status":1})
+  })
+})
+
 module.exports = router;
