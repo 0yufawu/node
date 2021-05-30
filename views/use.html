@@ -7,8 +7,58 @@
     <title>Document</title>
     <link rel="stylesheet" href="/stylesheets/base.css">
     <link rel="stylesheet" href="/stylesheets/index.css">
+    <style>
+        .d_none{
+            display: none;
+        }
+
+        .a {
+    height: 80px;
+}
+
+.hero {
+    margin-bottom: 12px;
+    margin-top: 6px;
+    float: left;
+    margin-right: 30px;
+}
+
+.in {
+    border: 1px solid #0a848d;
+    border-radius: 4px;
+    height: 30px;
+    width: 180px;
+}
+
+.slc {
+    border: 1px solid #120358;
+    border-radius: 4px;
+    height: 34px;
+    width: 186px;
+}
+    </style>
+
 </head>
 <body>
+    <div class="a">
+        <div class="hero">
+            类型：
+            <label>
+            <input class="in" type="text" placeholder="  " id="her">
+        </label>
+        </div>
+        
+        <div class="hero">
+            影名：
+            <label>
+                <input class="" type="text" placeholder="  " id="">
+        </label>
+        </div>
+        <button class="sch-btn" onclick="sch()">
+        查询
+    </button>
+        <a href="#" onclick="rem()">清空</a>
+    </div>
     <div class="add">
         <button class="sch-btn" onclick="addBase()">
         ＋ 添加
@@ -58,14 +108,50 @@
         </div> 
     </div>
     <div class="bottom-btn">
-        <button class="sch-btn" id="confirm" onclick="conf()" style="float: right">
+        <button class="sch-btn" id="confirm"  style="float: right">
+        确 定
+    </button>
+        <button class="sch-btn" id="cancel1"  style="margin-right:3px; float: right; color:black; background-color: white; border: 1px solid #d0d0d0;">
+        取 消
+    </button>
+    </div>
+ 
+</div>
+
+
+<div class="addNew" id="alterNew" style="display: none">
+    <div class="top-text">
+        <h3>
+            修改数据
+        </h3>
+        <i id="icon-close">
+        <a href="#" onclick="closes()">
+        </a>
+    </i>
+    </div>
+    <div class="mid-content" id="con-input">
+        <div class="hero">
+            <span>*</span> 类型:
+            <label>
+            <input class="in" id="type2" type="text" placeholder="  ">
+        </label>
+        </div>
+        <div class="hero">
+            <span>*</span> 影名:
+            <label>
+            <input class="in" id="name2" type="text" placeholder="  ">
+        </label>
+        </div> 
+    </div>
+    <div class="bottom-btn">
+        <button class="sch-btn" id="alter"  style="float: right">
         确 定
     </button>
         <button class="sch-btn" id="cancel" onclick="closes()" style="margin-right:3px; float: right; color:black; background-color: white; border: 1px solid #d0d0d0;">
         取 消
     </button>
     </div>
-</div>
+    </div>
 </body>
 <script src="/javascripts/jq.min.js" type="text/javascript"></script>
 <script src="/javascripts/base.js" type="text/javascript"></script>
@@ -81,7 +167,7 @@
                     <td>${i.type}</td>
                     <td>${i.name}</td>
                     <td>
-                        <button class="xiugai">修改</button>
+                        <button class="xiugai"  data-name=${i.name} data-type=${i.type}> 修改</button>
                         <button class="del" data-name=${i.name}>删除</button>
                     </td>
                 </tr>
@@ -106,21 +192,46 @@ load()
      })
  })
 
+var old = null;
+ $("#moviess").delegate(".xiugai","click",function(){
+     $("#alterNew").show();
+     $("#name2").val($(this).data("name"))
+     old = $(this).data("name");
+     $("#type2").val($(this).data("type"))
+ })
 
- function conf() {
-    let type = $("#type").val()
-    let name = $("#name").val()
 
+$("#alter").click(function(){
     $.ajax({
         type:"post",
-        url:"/use/add",
-        data:{"type":type,"name":name},
-        success:function(data){
-            alert("add success");
-           
+        url :"/use/alter",
+        data : {"type":$("#type2").val(),"name":$("#name2").val(),"old":old},
+        // {"type":$(this).data("type"),"name":$(this).data("name")},
+        success : function(data){
+            if(data.status == 1){
+                alert("alter success");
+                
+            }
         }
     })
-}
+})
 
+$("#confirm").click(function(){
+    $.ajax({
+        type:"post",
+        url :"/use/add",
+        data : {"type":$("#type").val(),"name":$("#name").val()},
+        success : function(data){
+            if(data.status == 1){
+                alert("add success")
+            }
+        }
+    })
+})
+
+$("#cancel1").click(function(){
+    $("#addin").addClass("d_none");
+})
+ 
 </script>
 </html>

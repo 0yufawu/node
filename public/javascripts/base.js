@@ -51,3 +51,11 @@ function closes() {
     d.style.display = 'none';
 }
 
+function alter(){
+    let d = document.getElementById("alterNew");
+    d.style.display = '';
+}
+function closes() {
+    let d = document.getElementById("alterNew");
+    d.style.display = 'none';
+}

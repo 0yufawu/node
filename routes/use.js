@@ -38,6 +38,7 @@ router.get('/show', function(req, res, next) {
 
 router.post('/del', function(req, res, next) {
   var name = req.body.name
+  console.log(name);
   var query = 'delete from movie where name = "'+name+'" ';
 
   database.query(query,function(err,rows,fields){
@@ -48,6 +49,22 @@ router.post('/del', function(req, res, next) {
     res.json({"status":1})
   })
 });
+
+
+router.post('/alter',function(req,res,next){
+  var type = req.body.type;
+  var name = req.body.name;
+
+  var query = 'update movie set type = "'+type+'",name = "'+name+'" where name = "'+req.body.old+'"'
+  database.query(query,function(err,rows,fields){
+    if(err){
+        console.log(err);
+        return;
+    }
+    res.json({"status":1})
+  })
+})
+
 
 router.post('/add',function(req,res,next){
   var type = req.body.type;
@@ -61,5 +78,7 @@ router.post('/add',function(req,res,next){
     res.json({"status":1})
   })
 })
+
+
 
 module.exports = router;
