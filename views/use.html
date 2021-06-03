@@ -57,7 +57,7 @@
         <button class="sch-btn" id="chaxun">
         查询
     </button>
-        <a href="#" >清空</a>
+        <a href="#" id="qingkong" >清空</a>
     </div>
 
     
@@ -222,12 +222,32 @@ $("#chaxun").click(function (){
         type:"post",
         url:"/use/chaxun",
         data : {"type":$("#lei").val(),"name":$("#ying").val()},
-        success : function(data){
-            type = data.rows.type;
-            name = data.rows.name;
+        success : function(d){
+            $("#moviess").empty();
+            document.getElementById("moviess").innerHTML = d.map ( i=>
+        `       <tr>
+                    <td>${i.type}</td>
+                    <td>${i.name}</td>
+                    <td>
+                        <button class="xiugai"  data-name=${i.name} data-type=${i.type}> 修改</button>
+                        <button class="del" data-name=${i.name}>删除</button>
+                    </td>
+                </tr>
+                `
+        )
         }
     })
 })
+
+// $("#qingkong").click(function(){
+//     $.ajax({
+//         type:"post",
+//         url:"/use/qingkong",
+//         data : {}
+//     })
+// })
+
+
 $("#confirm").click(function(){
     $.ajax({
         type:"post",
