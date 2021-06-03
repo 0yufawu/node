@@ -44,21 +44,23 @@
         <div class="hero">
             类型：
             <label>
-            <input class="in" type="text" placeholder="  " id="her">
+            <input class="in" type="text" placeholder="  " id="lei">
         </label>
         </div>
         
         <div class="hero">
             影名：
             <label>
-                <input class="" type="text" placeholder="  " id="">
+                <input class="" type="text" placeholder="  " id="ying">
         </label>
         </div>
-        <button class="sch-btn" onclick="sch()">
+        <button class="sch-btn" id="chaxun">
         查询
     </button>
-        <a href="#" onclick="rem()">清空</a>
+        <a href="#" >清空</a>
     </div>
+
+    
     <div class="add">
         <button class="sch-btn" onclick="addBase()">
         ＋ 添加
@@ -215,7 +217,17 @@ $("#alter").click(function(){
         }
     })
 })
-
+$("#chaxun").click(function (){
+    $.ajax({
+        type:"post",
+        url:"/use/chaxun",
+        data : {"type":$("#lei").val(),"name":$("#ying").val()},
+        success : function(data){
+            type = data.rows.type;
+            name = data.rows.name;
+        }
+    })
+})
 $("#confirm").click(function(){
     $.ajax({
         type:"post",

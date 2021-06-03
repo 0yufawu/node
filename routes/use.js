@@ -1,4 +1,5 @@
 var express = require('express');
+const { lchown } = require('fs');
 var router = express.Router();
 
 var mysql = require("mysql");
@@ -79,6 +80,20 @@ router.post('/add',function(req,res,next){
   })
 })
 
-
+router.post('/chaxun',function(req,res,next){
+  var type = req.body.type;
+  var name = req.body.name;
+  var query = 'select * from movie where type = "'+type+'" and name ="'+name+'"';
+  
+  database.query(query,function(err,rows,fields){
+    if(err){
+        console.log(err);
+        return;
+    }
+    res.json(rows);
+    console.log(rows)
+  })
+  
+})
 
 module.exports = router;

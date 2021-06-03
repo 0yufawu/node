@@ -59,3 +59,32 @@ function closes() {
     let d = document.getElementById("alterNew");
     d.style.display = 'none';
 }
+
+// function rem() {
+//     // location.reload();
+//     let type = document.getElementById("type");
+//     type.value = '';
+
+//     let name = document.getElementById("name");
+//     name.value='';
+// }
+
+// function sch() {
+
+//     let lei = document.getElementById("lei");
+//     let typeName = lei.value;
+
+//     let name = donamcument.getElementById("ying");
+//     let rowLength = tables.rows.length;
+//     let colLength = tables.rows[0].cells.length - 1;
+//     if (herName == '') {
+//         for (let i = 1; i < rowLength; i++) {
+//             let searchSex = tables.rows[i].cells[2].innerHTML;
+//             let searchPos = tables.rows[i].cells[4].innerHTML;
+//             if (searchSex.match(sexName) && searchPos.match(posName)) {
+//                 tables.rows[i].style.display = '';
+//             } else {
+//                 tables.rows[i].style.display = 'none';
+//             }
+//         }
+//     }}
