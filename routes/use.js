@@ -26,7 +26,7 @@ const database = mysql.createConnection({
 
 /* GET home page. */
 router.get('/show', function(req, res, next) {
-    var query = 'select * from movie ';
+    var query = 'select * from movie order by id desc';
 
     database.query(query,function(err,rows,fields){
       if(err){
@@ -70,7 +70,7 @@ router.post('/alter',function(req,res,next){
 router.post('/add',function(req,res,next){
   var type = req.body.type;
   var name = req.body.name;
-  var query = 'insert into movie values("'+type+'","'+name+'")';
+  var query = 'insert into movie (type,name) values("'+type+'","'+name+'")';
   database.query(query,function(err,rows,fields){
     if(err){
         console.log(err);
@@ -83,7 +83,7 @@ router.post('/add',function(req,res,next){
 router.post('/chaxun',function(req,res,next){
   var type = req.body.type;
   var name = req.body.name;
-  var query = 'select * from movie where type = "'+type+'" and name ="'+name+'"';
+  var query = 'select * from movie where type like "'+type+'" and name ="'+name+'"';
   
   database.query(query,function(err,rows,fields){
     if(err){

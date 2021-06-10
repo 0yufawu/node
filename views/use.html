@@ -200,6 +200,7 @@ var old = null;
      $("#name2").val($(this).data("name"))
      old = $(this).data("name");
      $("#type2").val($(this).data("type"))
+   
  })
 
 
@@ -212,6 +213,7 @@ $("#alter").click(function(){
         success : function(data){
             if(data.status == 1){
                 alert("alter success");
+                window.location.href="/use";
                 
             }
         }
@@ -222,7 +224,8 @@ $("#chaxun").click(function (){
         type:"post",
         url:"/use/chaxun",
         data : {"type":$("#lei").val(),"name":$("#ying").val()},
-        success : function(d){
+        success : function(d  
+        ){
             $("#moviess").empty();
             document.getElementById("moviess").innerHTML = d.map ( i=>
         `       <tr>
@@ -255,7 +258,9 @@ $("#confirm").click(function(){
         data : {"type":$("#type").val(),"name":$("#name").val()},
         success : function(data){
             if(data.status == 1){
-                alert("add success")
+                alert("add success");
+                window.location.href="/use";
+                // window.location.replace("/use/add")
             }
         }
     })
